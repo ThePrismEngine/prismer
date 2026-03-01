@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+/poetry.lock
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/prismer.iml
+/.idea/vcs.xml

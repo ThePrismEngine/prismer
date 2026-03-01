@@ -1,6 +1,10 @@
+from pathlib import Path
+
 import typer
 from prismer.commands import engine, project
+from prismer.utils import init
 
+init()
 
 app = typer.Typer(
     name="prismer",

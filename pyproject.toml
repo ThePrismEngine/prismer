@@ -1,7 +1,7 @@
 [project]
-name = "prism-engine-cli"
+name = "prism-engine-tools"
 version = "0.1.0"
-description = "A CLI tool for managing versions of the PrismEngine engine and projects based on it"
+description = "Tools for efficient work with PrismEngine. Includes prismer — a command-line interface (CLI) tool designed to manage versions of the PrismEngine engine and projects built on it."
 license = {text = "MIT"}
 authors = [
     {name = "Aleksei-Kutuzov",email = "allekskutuzov@gmail.com"}
@@ -29,5 +29,4 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [project.urls]
-Homepage = "https://github.com/ThePrismEngine/prismer"
 PrismEngine = "https://github.com/ThePrismEngine/PrismEngine"

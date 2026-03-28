@@ -212,3 +212,4 @@ __marimo__/
 /.idea/modules.xml
 /.idea/prismer.iml
 /.idea/vcs.xml
+/poetry.toml

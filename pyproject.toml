@@ -1,5 +1,5 @@
 [project]
-name = "prismer"
+name = "prism-engine-cli"
 version = "0.1.0"
 description = "A CLI tool for managing versions of the PrismEngine engine and projects based on it"
 license = {text = "MIT"}
@@ -8,20 +8,26 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
-    "typer (>=0.24.0,<0.25.0)",
-    "sqlalchemy (>=2.0.46,<3.0.0)",
-    "platformdirs (>=4.9.2,<5.0.0)",
-    "urllib3 (>=2.6.3,<3.0.0)"
+
+[tool.poetry]
+packages = [
+    { include = "prismer" }
 ]
 
+[tool.poetry.dependencies]
+python = ">=3.13"
+typer = ">=0.24.0,<0.25.0"
+sqlalchemy = ">=2.0.46,<3.0.0"
+platformdirs = ">=4.9.2,<5.0.0"
+urllib3 = ">=2.6.3,<3.0.0"
+
+[project.scripts]
+prismer = "prismer.cli:app"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[project.scripts]
-prismer = "prismer.cli:app"
-
-[tool.setuptools.packages.find]
-where = ["src"]
+[project.urls]
+Homepage = "https://github.com/ThePrismEngine/prismer"
+PrismEngine = "https://github.com/ThePrismEngine/PrismEngine"

@@ -3,7 +3,7 @@ name: Upload Python Package to PyPI
 on:
   release:
     types: [published]
-  workflow_dispatch: {}  # ← ИСПРАВЛЕНО: добавлены фигурные скобки
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -39,16 +39,11 @@ jobs:
       - name: Extract version
         id: get-version
         run: |
-          if [ -n "${{ github.event.release.tag_name }}" ]; then
-            VERSION="${{ github.event.release.tag_name }}"
-            VERSION="${VERSION#v}"
+          TAG="${{ github.event.release.tag_name }}"
+          if [ -n "$TAG" ]; then
+            VERSION="${TAG#v}"
           else
-            VERSION=$(python3 -c "
-import tomllib
-with open('pyproject.toml', 'rb') as f:
-    data = tomllib.load(f)
-print(data.get('project', {}).get('version', '0.0.0'))
-" 2>/dev/null || echo "0.0.0")
+            VERSION=$(grep -m1 '^version' pyproject.toml | cut -d'"' -f2 || echo "0.0.0")
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "📦 Version: $VERSION"
@@ -68,7 +63,7 @@ print(data.get('project', {}).get('version', '0.0.0'))
       name: pypi
       url: https://pypi.org/project/prism-engine-tools/${{ needs.release-build.outputs.version }}
 
-    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
+    if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/') }}
 
     steps:
       - name: Download build artifacts

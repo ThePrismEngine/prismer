@@ -1,3 +1,4 @@
 from platformdirs import PlatformDirs
 
-dirs = PlatformDirs("prismer", "ThePrismEngine")
+app_dir = PlatformDirs("prismer", "ThePrismEngine").user_data_path
+versions_dir = app_dir / "versions"

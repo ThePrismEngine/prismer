@@ -21,6 +21,8 @@ sqlalchemy = ">=2.0.46,<3.0.0"
 platformdirs = ">=4.9.2,<5.0.0"
 urllib3 = ">=2.6.3,<3.0.0"
 sqlmodel = "^0.0.39"
+copier = "^9.17.1"
+babel = "^2.18.0"
 
 [project.scripts]
 prismer = "prismer.cli:app"

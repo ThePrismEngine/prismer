@@ -7,30 +7,30 @@ from rich.markdown import Markdown
 
 from prismer.db.models import EngineVersion
 from prismer.db.repos import EngineVersionRepository
+from prismer.locales import _
 from prismer.log.log import error, info
-from prismer.repo.repo import get_releases_for_list, get_release_for_install, \
-    get_asset_path_for_this_version_and_platform, get_release_for_show
+from prismer.realise_viewer import Realise, github_realise_viewer
 from prismer.utils.dirs import versions_dir
 from prismer.utils.dowload import download_and_extract
 
 engine_app = typer.Typer(
     name="engine",
-    help="Управление движком и его версиями"
+    help=_("Управление движком и его версиями")
 )
 
 @engine_app.command("install")
-def install(version: str = typer.Option("latest", help="Версия движка для установки, вы можете посмотреть на вывод prismer engine list чтобы узнать доступные"),
+def install(version: str = typer.Option("latest", help=_("Версия движка для установки, вы можете посмотреть на вывод prismer engine list чтобы узнать доступные")),
             #self_compilation: bool = typer.Option(False, help="Компилировать из исходного кода самостоятельно, без готовых файлов из релиза")
             ):
-    if (release := get_release_for_install(version)) is None:
-        error(f"Версия {version} отсутствует, посмотрите prismer engine list")
+    if (release := github_realise_viewer.by_tag(version)) is None:
+        error(_("Версия {version} отсутствует, посмотрите prismer engine list").format(version=version))
 
     engine_version_repository = EngineVersionRepository()
     if engine_version_repository.get_by_github_id(release.id) is not None:
-        error("Версия уже установленна")
+        error(_("Версия уже установлена"))
 
     install_dir = versions_dir / version
-    asset_url = get_asset_path_for_this_version_and_platform(version)
+    asset_url = github_realise_viewer.by_tag(version)
     try:
         download_and_extract(asset_url, install_dir)
         engine_version_repository.create(EngineVersion(github_id=release.id, tag=release.tag_name, name=release.name, published_at=release.published_at, lib_path=str(install_dir)))
@@ -42,23 +42,23 @@ def install(version: str = typer.Option("latest", help="Версия движк�
 def uninstall(version: str = typer.Option("latest")):
     engine_version_repository = EngineVersionRepository()
     if engine_version_repository.get_by_tag(version) is None:
-        error("Версия не установленна")
+        error(_("Версия не установлена"))
 
     install_dir = versions_dir / version
     shutil.rmtree(install_dir)
 
     engine_version_repository = EngineVersionRepository()
     engine_version_repository.delete_by_tag(version)
-    info(f"Версия {version} успешно деинсталированна")
+    info(_("Версия {version} успешно деинсталлирована").format(version=version))
 
 @engine_app.command("list")
 def list_version():
     table = Table()
-    table.add_column("Версия")
-    table.add_column("Дата публикации")
-    table.add_column("Установлена")
+    table.add_column(_("Версия"))
+    table.add_column(_("Дата публикации"))
+    table.add_column(_("Установлена"))
     try:
-        releases_for_list = get_releases_for_list()
+        releases_for_list = github_realise_viewer.list()
     except Exception as e:
         error(str(e))
     engine_version_repository = EngineVersionRepository()
@@ -72,14 +72,14 @@ def list_version():
 def show_version(version: str = typer.Option("latest")):
     table = Table(show_header=False, show_lines=True)
 
-    release = get_release_for_show(version)
+    release = github_realise_viewer.by_tag(version)
 
-    table.add_row("Name", release.name)
-    table.add_row("Tag name", release.tag_name)
-    table.add_row("Published at", release.published_at.strftime("%d.%m.%Y"))
-    table.add_row("ghr id", str(release.id))
-    table.add_row("Supported systems", ", ".join(release.supported_systems))
-    table.add_row("Supported architectures", ", ".join(release.supported_architectures))
+    table.add_row(_("Name"), release.name)
+    table.add_row(_("Tag name"), release.tag_name)
+    table.add_row(_("Published at"), release.published_at.strftime("%d.%m.%Y"))
+    table.add_row(_("ghr id"), str(release.id))
+    table.add_row(_("Supported systems"), ", ".join(release.supported_systems))
+    table.add_row(_("Supported architectures"), ", ".join(release.supported_architectures))
     console = Console()
     console.print(table)
 
@@ -90,10 +90,10 @@ def show_version(version: str = typer.Option("latest")):
 def installed():
     engine_version_repository = EngineVersionRepository()
     table = Table()
-    table.add_column("Версия")
-    table.add_column("Дата публикации")
-    table.add_column("Дата установки")
-    table.add_column("Путь")
+    table.add_column(_("Версия"))
+    table.add_column(_("Дата публикации"))
+    table.add_column(_("Дата установки"))
+    table.add_column(_("Путь"))
 
     installed_versions =  engine_version_repository.get_all()
     for version in installed_versions:

@@ -6,8 +6,8 @@ import typer
 from rich.progress import Progress, SpinnerColumn, TransferSpeedColumn, DownloadColumn, TimeRemainingColumn
 from urllib3 import PoolManager
 
+from prismer.locales import _
 from prismer.log.log import error
-from prismer.repo.repo import get_asset_path_for_this_version_and_platform
 
 
 def get_common_root_folder(members):
@@ -44,13 +44,13 @@ def download_and_extract(url: str, output_path: Path):
                   TimeRemainingColumn(),) as progress:
         with http.request("GET", url, preload_content=False, redirect=True) as response:
             if response.status == 404:
-                error(f"Файла {url} не сушествует, возможно ваша архитектура или os пока не поддерживается")
+                error(_("Файла {url} не сушествует, возможно ваша архитектура или os пока не поддерживается").format(url=url))
             if response.status != 200:
                 error(f"HTTP: {response.status}")
 
             total_size = int(response.headers.get('content-length', 0))
 
-            task = progress.add_task(f"[cyan]Скачивание {filename}", total=total_size if total_size > 0 else None)
+            task = progress.add_task(_("[cyan]Скачивание {filename}").format(filename=filename), total=total_size if total_size > 0 else None)
 
             chunk_size = 8192  # 8 KB
             with open(temp_filepath, "wb") as file:
@@ -70,7 +70,7 @@ def download_and_extract(url: str, output_path: Path):
             members = zip_ref.infolist()
 
             with Progress() as extract_progress:
-                extract_task = extract_progress.add_task("[green]Распаковка", total=len(members))
+                extract_task = extract_progress.add_task(_("[green]Распаковка"), total=len(members))
                 for member in members:
                         zip_ref.extract(member, output_dir)
                         extract_progress.update(extract_task, advance=1)

@@ -74,12 +74,12 @@ def show_version(version: str = typer.Option("latest")):
 
     release = github_realise_viewer.by_tag(version)
 
-    table.add_row(_("Name"), release.name)
-    table.add_row(_("Tag name"), release.tag_name)
-    table.add_row(_("Published at"), release.published_at.strftime("%d.%m.%Y"))
+    table.add_row(_("Имя"), release.name)
+    table.add_row(_("Имя тега"), release.tag_name)
+    table.add_row(_("Опубликовано в"), release.published_at.strftime("%d.%m.%Y"))
     table.add_row(_("ghr id"), str(release.id))
-    table.add_row(_("Supported systems"), ", ".join(release.supported_systems))
-    table.add_row(_("Supported architectures"), ", ".join(release.supported_architectures))
+    table.add_row(_("Поддерживаемые системы"), ", ".join(release.supported_systems))
+    table.add_row(_("Поддерживаемые архитектуры"), ", ".join(release.supported_architectures))
     console = Console()
     console.print(table)
 

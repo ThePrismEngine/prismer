@@ -2,11 +2,12 @@ from pathlib import Path
 
 import typer
 from prismer.commands import engine, project
+from prismer.locales import _
 from prismer.utils.init import init
 
 app = typer.Typer(
     name="prismer",
-    help="CLI для управления движком PrismEngine и проектами на нем",
+    help=_("CLI для управления движком PrismEngine и проектами на нем"),
 )
 
 @app.callback(invoke_without_command=True)

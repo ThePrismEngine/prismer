@@ -1,111 +1,115 @@
-# English translations for Prismer.
-# Copyright (C) 2026 PrismEngine
-# This file is distributed under the same license as the PrismEngine
-# project.
-# FIRST AUTHOR <allekskutuzov@gmail.com>, 2026.
+# Translations template for prism-engine-tools.
+# Copyright (C) 2026 ThePrismEngine
+# This file is distributed under the same license as the prism-engine-tools project.
+# FIRST AUTHOR allekskutuzov@gmail.com, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-13 12:01+0300\n"
-"PO-Revision-Date: 2026-08-13 12:09+0300\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Project-Id-Version: 0.0.4\n"
+"Report-Msgid-Bugs-To: allekskutuzov@gmail.com\n"
+"POT-Creation-Date: 2026-08-25 00:23+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Alexey Kutuzov <allekskutuzov@gmail.com>\n"
+"Language-Team: English <en@li.org>\n"
 "Language: en\n"
-"Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
+#: prismer/cli.py:10
+msgid "CLI для управления движком PrismEngine и проектами на нем"
+msgstr "CLI for managing the PrismEngine engine and its projects"
+
 #: prismer/commands/engine.py:18
 msgid "Управление движком и его версиями"
-msgstr ""
+msgstr "Manage the engine and its versions"
 
 #: prismer/commands/engine.py:22
 msgid ""
 "Версия движка для установки, вы можете посмотреть на вывод prismer engine"
 " list чтобы узнать доступные"
 msgstr ""
+"Engine version to install. You can run 'prismer engine list' to see "
+"available versions"
 
 #: prismer/commands/engine.py:26
 #, python-brace-format
 msgid "Версия {version} отсутствует, посмотрите prismer engine list"
-msgstr ""
+msgstr "Version {version} is not available, check 'prismer engine list'"
 
 #: prismer/commands/engine.py:30
-msgid "Версия уже установленна"
-msgstr ""
+msgid "Версия уже установлена"
+msgstr "Version is already installed"
 
 #: prismer/commands/engine.py:45
-msgid "Версия не установленна"
-msgstr ""
+msgid "Версия не установлена"
+msgstr "Version is not installed"
 
 #: prismer/commands/engine.py:52
 #, python-brace-format
-msgid "Версия {version} успешно деинсталированна"
-msgstr ""
+msgid "Версия {version} успешно деинсталлирована"
+msgstr "Version {version} successfully uninstalled"
 
 #: prismer/commands/engine.py:57 prismer/commands/engine.py:93
 msgid "Версия"
-msgstr ""
+msgstr "Version"
 
 #: prismer/commands/engine.py:58 prismer/commands/engine.py:94
 msgid "Дата публикации"
-msgstr ""
+msgstr "Release date"
 
 #: prismer/commands/engine.py:59
 msgid "Установлена"
-msgstr ""
+msgstr "Installed"
 
 #: prismer/commands/engine.py:77
-msgid "Name"
-msgstr ""
+msgid "Имя"
+msgstr "Name"
 
 #: prismer/commands/engine.py:78
-msgid "Tag name"
-msgstr ""
+msgid "Имя тега"
+msgstr "Tag name"
 
 #: prismer/commands/engine.py:79
-msgid "Published at"
-msgstr ""
+msgid "Опубликовано в"
+msgstr "Published at"
 
 #: prismer/commands/engine.py:80
 msgid "ghr id"
-msgstr ""
+msgstr "GHR ID"
 
 #: prismer/commands/engine.py:81
-msgid "Supported systems"
-msgstr ""
+msgid "Поддерживаемые системы"
+msgstr "Supported systems"
 
 #: prismer/commands/engine.py:82
-msgid "Supported architectures"
-msgstr ""
+msgid "Поддерживаемые архитектуры"
+msgstr "Supported architectures"
 
 #: prismer/commands/engine.py:95
 msgid "Дата установки"
-msgstr ""
+msgstr "Installation date"
 
 #: prismer/commands/engine.py:96
 msgid "Путь"
-msgstr ""
+msgstr "Path"
 
 #: prismer/commands/project.py:9
 msgid "Операции с проектами"
-msgstr ""
+msgstr "Project operations"
 
 #: prismer/commands/project.py:14
 msgid "Название проекта"
-msgstr ""
+msgstr "Project name"
 
 #: prismer/commands/project.py:18
-msgid "Версия движка под который будет создан проект, в формате v<x>.<y>.<z>"
-msgstr ""
+msgid "Версия движка, под который будет создан проект, в формате v<x>.<y>.<z>"
+msgstr "Engine version for which the project will be created, in the format v<x>.<y>.<z>"
 
 #: prismer/commands/project.py:23
 msgid "Директория с проектом (по умолчанию - текущая)"
-msgstr ""
+msgstr "Project directory (default is current)"
 
 #: prismer/utils/dowload.py:47
 #, python-brace-format
@@ -113,36 +117,37 @@ msgid ""
 "Файла {url} не сушествует, возможно ваша архитектура или os пока не "
 "поддерживается"
 msgstr ""
+"File {url} does not exist, perhaps your architecture or OS is not yet "
+"supported"
 
 #: prismer/utils/dowload.py:53
 #, python-brace-format
 msgid "[cyan]Скачивание {filename}"
-msgstr ""
+msgstr "[cyan]Downloading {filename}"
 
 #: prismer/utils/dowload.py:73
 msgid "[green]Распаковка"
-msgstr ""
+msgstr "[green]Extracting"
 
 #: prismer/utils/request_decorator.py:12
 msgid "Таймаут при подключении к серверу"
-msgstr ""
+msgstr "Connection timeout"
 
 #: prismer/utils/request_decorator.py:14
 msgid "Таймаут при чтении ответа от сервера"
-msgstr ""
+msgstr "Read timeout"
 
 #: prismer/utils/request_decorator.py:16
 #, python-brace-format
 msgid "Ошибка SSL/TLS: {e}"
-msgstr ""
+msgstr "SSL/TLS error: {e}"
 
 #: prismer/utils/request_decorator.py:18
 #, python-brace-format
 msgid "Превышено максимальное число попыток: {e}"
-msgstr ""
+msgstr "Maximum number of retries exceeded: {e}"
 
 #: prismer/utils/request_decorator.py:20
 #, python-brace-format
 msgid "HTTP-ошибка: {e}"
-msgstr ""
-
+msgstr "HTTP error: {e}"
